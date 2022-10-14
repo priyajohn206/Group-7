@@ -57,4 +57,5 @@ function find_all_arrangements(n) {
   return allRes;
 }
 
-console.log(find_all_arrangements(5))
+//13 is the maximun number of the input size.
+console.log(find_all_arrangements(13))
