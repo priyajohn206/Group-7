@@ -57,5 +57,29 @@ function find_all_arrangements(n) {
   return allRes;
 }
 
+//-1 is none and define by col direction, while n = 5, [0,-1,-1,-1,-1]
+function completeNQueen(userPlaced) {
+  var showList = [];
+  function chechCointain(board) {
+    var noShow = false;
+    for(let i=0; i<userPlaced.length; i++) {
+      if(userPlaced[i]>=0 && board[i][userPlaced[i]]==="-") {
+          noShow = true;
+        }
+    }   
+    if(!noShow){
+      showList.push(JSON.parse(JSON.stringify(board)));
+    }
+  }
+
+  for(let i=0; i<allResult.length; i++) {
+    let checkingboard = allResult[i]
+    chechCointain(checkingboard)
+  }
+  return showList;
+}
+
 //13 is the maximun number of the input size.
-console.log(find_all_arrangements(13))
+let allResult = find_all_arrangements(5);
+// console.log(allResult)
+console.log(completeNQueen([-1,-1,-1, 3,-1]))
