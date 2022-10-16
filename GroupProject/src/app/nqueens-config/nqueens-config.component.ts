@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'nqueensconfig',
@@ -27,7 +28,11 @@ export class NQueensConfigComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  solveNQueens() {
+    this.router.navigate(['/solutions/' + this.nSquaresGenerated + '/' + '2.3,3.1,4.4,5.2,6.5,7.3,8.6,1.8']);
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

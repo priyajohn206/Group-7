@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NQueensConfigComponent } from './nqueens-config/nqueens-config.component';
 import { ChessBoardComponent } from './chess-board/chess-board.component';
 import { RerenderDirectiveDirective } from './rerender-directive.directive';
+import { NQueensSolutionsComponent } from './nqueens-solutions/nqueens-solutions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NQueensConfigComponent,
     ChessBoardComponent,
-    RerenderDirectiveDirective
+    RerenderDirectiveDirective,
+    NQueensSolutionsComponent
   ],
   imports: [
     BrowserModule,
