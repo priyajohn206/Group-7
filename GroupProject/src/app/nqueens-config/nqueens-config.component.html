@@ -1,0 +1,28 @@
+<div>
+
+    <!-- Header Section -->
+    <div class="header">
+      <h1>N Queens Completion</h1>
+    </div>
+
+    <!-- Label for Input Box -->
+    <div class="box-label">
+      <label class="label-txt">Enter Board Size</label>
+    </div>
+    
+    <!-- Input section -->
+    <div class="n-outer-box">
+      <div class="input-group mb-3 n-inner-box">
+        <input type="number" class="form-control n-input-box" placeholder="8" max="25" min="4" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="nSquares">
+        <button class="btn btn-secondary input-btn" type="button" id="button-addon2" (click)="generateBoard()">Generate</button>
+      </div>
+    </div>
+    
+    <ChessBoard *rerender="nSquaresGenerated" [nSquares]="nSquaresGenerated"></ChessBoard>
+
+    <!-- Button section -->
+    <div class="table-btn">
+      <button type="button" (click)="solveNQueens()" class="btn btn-secondary solve-btn">Solve</button>
+    </div>
+
+</div>
