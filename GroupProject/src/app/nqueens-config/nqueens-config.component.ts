@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
+import { ChessBoardComponent } from '../chess-board/chess-board.component';
 
 @Component({
   selector: 'nqueensconfig',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NQueensConfigComponent implements OnInit {
 
-  maxSquares = 25;
+  @ViewChild(ChessBoardComponent) chessBoard: ChessBoardComponent;
+
+  maxSquares = 14;
   minSquares = 4;
 
   nSquares= 8;
@@ -28,8 +31,27 @@ export class NQueensConfigComponent implements OnInit {
     }
   }
 
+  clearInput() {
+    this.chessBoard.clearInput();
+  }
+
   solveNQueens() {
-    this.router.navigate(['/solutions/' + this.nSquaresGenerated + '/' + '2.3,3.1,4.4,5.2,6.5,7.3,8.6,1.8']);
+    let route = '/solutions/' + this.nSquaresGenerated + '/';
+    let myInput = this.chessBoard.getInput()
+
+    if (myInput.length == 0) {
+      route += '-1';
+    }
+    else {
+      myInput.forEach((coord, index) => {
+        route += coord[0] + '.' + coord[1];
+        if (index < myInput.length - 1) {
+          route += ',';
+        }
+      });
+    }
+    
+    this.router.navigate([route]);
   }
 
   constructor(private router: Router) { }

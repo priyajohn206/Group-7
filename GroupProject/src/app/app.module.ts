@@ -8,6 +8,7 @@ import { NQueensConfigComponent } from './nqueens-config/nqueens-config.componen
 import { ChessBoardComponent } from './chess-board/chess-board.component';
 import { RerenderDirectiveDirective } from './rerender-directive.directive';
 import { NQueensSolutionsComponent } from './nqueens-solutions/nqueens-solutions.component';
+import { ChessBoardSolvedComponent } from './chess-board-solved/chess-board-solved.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NQueensSolutionsComponent } from './nqueens-solutions/nqueens-solutions
     NQueensConfigComponent,
     ChessBoardComponent,
     RerenderDirectiveDirective,
-    NQueensSolutionsComponent
+    NQueensSolutionsComponent,
+    ChessBoardSolvedComponent
   ],
   imports: [
     BrowserModule,

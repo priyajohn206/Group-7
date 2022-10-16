@@ -1,1 +1,16 @@
-<p>nqueens-solutions works! n = {{ nSquares }}, queens = {{ myInput }}</p>
+<button routerLink="/" type="button" id="backButton" class="btn btn-secondary">Back</button>
+<div *ngIf="solutionList.length > 0" class="container">
+    <h2>Showing solution {{ currentSolutionIndex + 1 }} of {{ solutionList.length }}</h2>
+    <button type="button" (click)="decrement()" class="btn btn-secondary indexControl">Previous</button>
+    <button type="button" (click)="increment()" class="btn btn-secondary indexControl">Next</button>
+    <button type="button" (click)="random()" class="btn btn-secondary indexControl">Random</button>
+    <br>
+    <div class="input-group mb-3 n-inner-box">
+        <input type="number" class="form-control n-input-box" placeholder="8" max="{{ solutionList.length }}" min="1" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="inputSolutionIndex">
+        <button class="btn btn-secondary input-btn" type="button" id="button-addon2" (click)="jumpTo()">Go To</button>
+      </div>
+</div>
+<ChessBoardSolved *rerender="currentSolution" [mySolution]="currentSolution"></ChessBoardSolved>
+<div *ngIf="solutionList.length == 0">
+    <p>No solutions found</p>
+</div>

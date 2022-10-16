@@ -13,7 +13,7 @@
     <!-- Input section -->
     <div class="n-outer-box">
       <div class="input-group mb-3 n-inner-box">
-        <input type="number" class="form-control n-input-box" placeholder="8" max="25" min="4" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="nSquares">
+        <input type="number" class="form-control n-input-box" placeholder="8" max="{{ maxSquares }}" min="{{ minSquares }}" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="nSquares">
         <button class="btn btn-secondary input-btn" type="button" id="button-addon2" (click)="generateBoard()">Generate</button>
       </div>
     </div>
@@ -22,6 +22,7 @@
 
     <!-- Button section -->
     <div class="table-btn">
+      <button type="button" (click)="clearInput()" class="btn btn-secondary solve-btn">Clear</button>
       <button type="button" (click)="solveNQueens()" class="btn btn-secondary solve-btn">Solve</button>
     </div>
 

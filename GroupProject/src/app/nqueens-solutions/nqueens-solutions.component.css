@@ -1,0 +1,28 @@
+* {
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+div {
+    margin-top: 15px;
+}
+
+#indexControlDiv {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.indexControl {
+    width: 125px;
+    margin: 0 15px;
+}
+
+#backButton {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}

@@ -61,6 +61,7 @@ body{
   .solve-btn{
     font-size: 20px;
     padding: 1%;
+    margin: 0 20px;
   }
   
   .solve-btn:hover{

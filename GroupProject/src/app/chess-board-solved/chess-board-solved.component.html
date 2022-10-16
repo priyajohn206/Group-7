@@ -1,0 +1,9 @@
+<div>
+    <table>
+        <tr *ngFor="let num of numArray; let i = index">
+            <td *ngFor="let char of charArray; let j = index" [ngStyle]="{backgroundColor: getColour(i, j)}" (click)="addQueen(i, j)">
+                <img *ngIf="showQueen(i, j)" src="assets/images/queen.png">
+            </td>
+        </tr>
+    </table>
+</div>
