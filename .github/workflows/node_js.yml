@@ -28,9 +28,5 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
     - run: npm ci
     - run: npm run build --if-present
-    - name: Angular Full CI
-      uses: colbyhill21/angular-full-ci@v1.0
-      with:
-        testcommand: "np serve"
      
 
