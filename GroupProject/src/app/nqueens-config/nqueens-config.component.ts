@@ -36,7 +36,7 @@ export class NQueensConfigComponent implements OnInit {
   }
 
   solveNQueens() {
-    let route = '/solutions/' + this.nSquaresGenerated + '/';
+    let route = 'nqueens/solutions/' + this.nSquaresGenerated + '/';
     let myInput = this.chessBoard.getInput()
 
     if (myInput.length == 0) {

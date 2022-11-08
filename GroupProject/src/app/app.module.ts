@@ -9,6 +9,9 @@ import { ChessBoardComponent } from './chess-board/chess-board.component';
 import { RerenderDirectiveDirective } from './rerender-directive.directive';
 import { NQueensSolutionsComponent } from './nqueens-solutions/nqueens-solutions.component';
 import { ChessBoardSolvedComponent } from './chess-board-solved/chess-board-solved.component';
+import { PolysphereConfigComponent } from './polysphere-config/polysphere-config.component';
+import { LandingComponent } from './landing/landing.component';
+import { PolysphereSolutionsComponent } from './polysphere-solutions/polysphere-solutions.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ChessBoardSolvedComponent } from './chess-board-solved/chess-board-solv
     ChessBoardComponent,
     RerenderDirectiveDirective,
     NQueensSolutionsComponent,
-    ChessBoardSolvedComponent
+    ChessBoardSolvedComponent,
+    PolysphereConfigComponent,
+    LandingComponent,
+    PolysphereSolutionsComponent
   ],
   imports: [
     BrowserModule,

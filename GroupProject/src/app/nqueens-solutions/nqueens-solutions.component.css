@@ -26,3 +26,9 @@ div {
     top: 25px;
     left: 25px;
 }
+
+#exportDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

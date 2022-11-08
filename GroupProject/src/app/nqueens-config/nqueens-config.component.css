@@ -1,70 +1,44 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .header{
-    margin: 20px;
-    text-align: center;
-    /* border: 1px solid black; */
-  }
-  h1{
-    font-weight: 400;
-    font-size: 34px;
-    color: gray;
-  }
-  .box-label{
-    text-align: center;
-    margin-top: 2%;
-    margin-bottom: 1%;
-  }
-  .label-txt{
-    font-size: 22px;
-    color: gray;
-  }
-  .n-outer-box{
-    /* border: 1px solid black; */
-    width: 50%;
-    display: flex;
-    padding: 1%;
-    /* justify-content: center; */
-    margin-left: 25%;
-  }
-  .n-input-box{
-    /* max-width: 70%; */
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 24px;
-    text-align: center;
-  }
-  .input-btn{
-    font-size: 16px;
-    width: 17%;
-  }
-  .input-btn:hover{
-    background-color: white;
-    color: gray;
-  }
-  .table-box{
-    margin-left: 20%;
-    width: 70%;
-  }
-  td{
-    padding: 4% !important;
-  }
-  /* table, tr, td{
-    border: 1px solid black;
-  } */
-  
-  .table-btn{
-    /* border: 1px solid yellow; */
-    text-align: center;
-    margin: 20px;
-  }
-  .solve-btn{
-    font-size: 20px;
-    padding: 1%;
-    margin: 0 20px;
-  }
-  
-  .solve-btn:hover{
-    background-color: white;
-    color: gray;
-  }
+h2 {
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.label-txt{
+  font-size: 22px;
+}
+
+.n-outer-box{
+  /* border: 1px solid black; */
+  width: 50%;
+  display: flex;
+  padding: 1%;
+  /* justify-content: center; */
+  margin-left: 25%;
+}
+
+.n-input-box{
+  text-align: center;
+}
+
+.input-btn{
+  font-size: 16px;
+  width: 17%;
+}
+
+.table-btn{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.table-btn > button {
+  width: 125px;
+}
+
+#backButton {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}

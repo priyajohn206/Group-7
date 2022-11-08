@@ -1,4 +1,9 @@
-<button routerLink="/" type="button" id="backButton" class="btn btn-secondary">Back</button>
+<button routerLink="/nqueens" type="button" id="backButton" class="btn btn-secondary">Back</button>
+
+<div id="header">
+    <h1>N-Queens Completion Solutions</h1>
+</div>
+
 <div *ngIf="solutionList.length > 0" class="container">
     <h2>Showing solution {{ currentSolutionIndex + 1 }} of {{ solutionList.length }}</h2>
     <button type="button" (click)="decrement()" class="btn btn-secondary indexControl">Previous</button>
@@ -8,9 +13,12 @@
     <div class="input-group mb-3 n-inner-box">
         <input type="number" class="form-control n-input-box" placeholder="8" max="{{ solutionList.length }}" min="1" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="inputSolutionIndex">
         <button class="btn btn-secondary input-btn" type="button" id="button-addon2" (click)="jumpTo()">Go To</button>
-      </div>
+    </div>
 </div>
 <ChessBoardSolved *rerender="currentSolution" [mySolution]="currentSolution"></ChessBoardSolved>
+<div id="exportDiv">
+    <button id="exportButton" type="button" class="btn btn-primary" (click)="exportSolutions()">Export Solutions</button>
+</div>
 <div *ngIf="solutionList.length == 0">
     <p>No solutions found</p>
 </div>

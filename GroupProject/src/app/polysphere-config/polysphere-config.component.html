@@ -1,0 +1,43 @@
+<button routerLink="/" type="button" id="backButton" class="btn btn-secondary">Back</button>
+
+<div id="header">
+    <h1>Polysphere Puzzle</h1>
+</div>
+<div class="container">
+
+    <div id="display-row">
+        <h4>Polyspheres to Solve</h4>
+        <hr>
+        <div id="polyBox">
+            <div *ngFor="let piece of myPieces; let i = index" class="polyBlock noPointerEvent" [ngStyle]="getPieceStyle(i)">
+                <div *ngFor="let pieceCoord of myPieces[i].shape; let y = index" [ngClass]="{cell: pieceCoord != 0, pointerEvent: pieceCoord != 0, noPointerEvent: pieceCoord == 0, noSize: pieceCoord == 0}" [ngStyle]="{ backgroundColor: getPieceColour(i, pieceCoord) }" (mousedown)="grabPiece($event, y, myPieces[i].size, i)" (mouseup)="dropPiece($event)" (mousemove)="movePiece($event)">
+
+                </div>
+            </div>
+        </div>
+        <div id="controls" [ngClass]="{hidden: activePiece == undefined || activePiece == null}">
+            <button type="button" class="btn btn-primary blackBorder" (click)="rotateL()">Rotate Left</button>
+            <button type="button" class="btn btn-primary blackBorder" (click)="rotateR()">Rotate Right</button>
+            <button type="button" class="btn btn-primary blackBorder" (click)="flipH()">Flip Horizontal</button>
+            <button type="button" class="btn btn-primary blackBorder" (click)="flipV()">Flip Vertical</button>
+        </div>
+        <hr>
+    </div>
+
+
+    <div id="table-div">
+        <div id="boardGrid" [ngStyle]="getBoardStyle()">
+            <div *ngFor="let cell of myBoard" class="cell">
+
+            </div>
+        </div>
+        </div>
+        <div class="table-btn">
+        <!-- Button section -->
+        <div id="buttonContainer">
+            <button type="button" class="btn btn-secondary" (click)="reset()">Reset</button>
+            <button type="button" class="btn btn-success" (click)="solve();">Solve</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+#cardHolder {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.card {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 25px 25px 0px 25px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card > * {
+    width: 300px;
+}
+
+img {
+    margin-bottom: 20px;
+}

@@ -53,6 +53,19 @@ export class NQueensSolutionsComponent implements OnInit {
     this.currentSolutionIndex = 0;
   }
 
+  exportSolutions() {
+    let file = new File([JSON.stringify(this.solutionList, null, 4)], 'solutions.json', {type: 'application/json'});
+    let link = document.createElement("a");
+    let url = URL.createObjectURL(file);
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", 'solutions.txt');
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {

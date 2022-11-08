@@ -1,0 +1,52 @@
+* {
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+#container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+}
+
+#indexControlDiv {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.indexControl {
+    width: 125px;
+    margin: 0 15px;
+}
+
+#inputBox {
+    width: 50%;
+}
+
+#gridContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cell {
+    border: 5px solid black;
+    margin: -5px;
+    height: 50px;
+    width: 50px;
+}
+
+#backButton {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}

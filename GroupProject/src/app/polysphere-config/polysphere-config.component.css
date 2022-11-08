@@ -1,0 +1,81 @@
+#header {
+    text-align: center;
+    background-color: #DDD;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+#polyBox {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 400px;
+    gap: 25px;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.polyBlock {
+    position: relative;
+    z-index: 10;
+}
+
+.cell {
+    border: 5px solid black;
+    margin: -5px;
+    height: 50px;
+    width: 50px;
+}
+
+.pointerEvent {
+    pointer-events: auto;
+}
+
+.noPointerEvent {
+    pointer-events: none;
+}
+
+.noSize {
+    /*height: 0;
+    width: 0;*/
+    margin: -5px;
+    height: 50px;
+    width: 50px;
+}
+
+#polyBox > div > .cell:hover {
+    cursor: pointer;
+}
+
+#backButton {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 20px;
+}
+
+#controls {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
+    z-index: 11;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.blackBorder {
+    border: 3px solid black;
+}
