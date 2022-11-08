@@ -24,6 +24,8 @@ export class PolysphereConfigComponent implements OnInit {
   currentlyHoveredCell = -1;
   currentlyHoveredCoordinates = undefined;
 
+  dragPosition = {x: 0, y: 0};
+
   getBoardStyle() {
     return {
       'display': 'grid',
@@ -113,6 +115,12 @@ export class PolysphereConfigComponent implements OnInit {
 
       this.activePiece.style.zIndex = 9;
       this.activePiece = undefined;
+      this.currentlyHoveredCoordinates = undefined;
+
+      this.myBoardEls = document.querySelectorAll('#boardGrid > .cell');
+      for (let i = 0; i < this.myBoardEls.length; i++) {
+        this.myBoardEls[i].style.backgroundColor = 'transparent';
+      }
 
     }
     else {
@@ -124,12 +132,14 @@ export class PolysphereConfigComponent implements OnInit {
   }
 
   movePiece(event) {
+
     if (!this.isMouseDown) {
       return;
     }
-    this.activePiece.style.top = (Number(this.activePiece.style.top.split('px')[0]) + event.movementY) + 'px';
-    this.activePiece.style.left = (Number(this.activePiece.style.left.split('px')[0]) + event.movementX) + 'px';
 
+    // this.activePiece.style.top = (Number(this.activePiece.style.top.split('px')[0]) + event.movementY) + 'px';
+    // this.activePiece.style.left = (Number(this.activePiece.style.left.split('px')[0]) + event.movementX) + 'px';
+    
     this.positionControlPanel();
 
     let x = event.clientX;
@@ -224,6 +234,7 @@ export class PolysphereConfigComponent implements OnInit {
       el.style.top = '0';
       el.style.left = '0';
     });
+    this.dragPosition = {x: this.dragPosition.x, y: this.dragPosition.y};
 
     this.removeFromBoard(-1);
 

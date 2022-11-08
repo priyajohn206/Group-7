@@ -58,7 +58,7 @@ export class PolysphereSolutionsComponent implements OnInit {
     }
     this.inputSolutionIndex = mySolutionIndex + 1;
     this.currentSolutionIndex = mySolutionIndex;
-    this.generateCurrentSolution();
+    //this.generateCurrentSolution();
   }
 
   generateCurrentSolution() {
@@ -161,7 +161,6 @@ export class PolysphereSolutionsComponent implements OnInit {
       result = solvePolyspheres(characters, coordinates, true);
       this.solutionGenerator = result[0];
       this.solutions.push(this.solutionGenerator.next().value);
-      console.log(this.solutions);
     }
     else {
       result = solvePolyspheres(characters, coordinates, false);
@@ -170,12 +169,9 @@ export class PolysphereSolutionsComponent implements OnInit {
 
     this.matrix = result[1];
 
-    console.log(this.solutions);
-    console.log(this.matrix);
-
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     this.generateCurrentSolution();
   }
 

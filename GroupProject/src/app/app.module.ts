@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { ChessBoardSolvedComponent } from './chess-board-solved/chess-board-solv
 import { PolysphereConfigComponent } from './polysphere-config/polysphere-config.component';
 import { LandingComponent } from './landing/landing.component';
 import { PolysphereSolutionsComponent } from './polysphere-solutions/polysphere-solutions.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { PolysphereSolutionsComponent } from './polysphere-solutions/polysphere-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

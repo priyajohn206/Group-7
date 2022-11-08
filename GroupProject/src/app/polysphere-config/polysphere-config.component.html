@@ -9,7 +9,7 @@
         <h4>Polyspheres to Solve</h4>
         <hr>
         <div id="polyBox">
-            <div *ngFor="let piece of myPieces; let i = index" class="polyBlock noPointerEvent" [ngStyle]="getPieceStyle(i)">
+            <div *ngFor="let piece of myPieces; let i = index" class="polyBlock noPointerEvent" [ngStyle]="getPieceStyle(i)" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
                 <div *ngFor="let pieceCoord of myPieces[i].shape; let y = index" [ngClass]="{cell: pieceCoord != 0, pointerEvent: pieceCoord != 0, noPointerEvent: pieceCoord == 0, noSize: pieceCoord == 0}" [ngStyle]="{ backgroundColor: getPieceColour(i, pieceCoord) }" (mousedown)="grabPiece($event, y, myPieces[i].size, i)" (mouseup)="dropPiece($event)" (mousemove)="movePiece($event)">
 
                 </div>
