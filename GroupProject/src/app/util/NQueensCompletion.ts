@@ -1,5 +1,3 @@
-import { filter } from "rxjs";
-
 let numColumns;
 let solutions = [];
 
