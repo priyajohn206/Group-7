@@ -14,6 +14,7 @@ import { PolysphereConfigComponent } from './polysphere-config/polysphere-config
 import { LandingComponent } from './landing/landing.component';
 import { PolysphereSolutionsComponent } from './polysphere-solutions/polysphere-solutions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Polysphere3dConfigComponent } from './polysphere3d-config/polysphere3d-config.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChessBoardSolvedComponent,
     PolysphereConfigComponent,
     LandingComponent,
-    PolysphereSolutionsComponent
+    PolysphereSolutionsComponent,
+    Polysphere3dConfigComponent
   ],
   imports: [
     BrowserModule,
