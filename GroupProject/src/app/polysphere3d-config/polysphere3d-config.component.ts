@@ -10,13 +10,13 @@ export class Polysphere3dConfigComponent implements OnInit {
 
   myPieces;
 
-  constructor() { }
+  constructor() { 
+    this.myPieces = createPolySpherePieces();
+  }
 
   ngOnInit(): void {
-
-    this.myPieces = createPolySpherePieces();
-    console.log(this.myPieces[0].print());
-
+    console.log(this.myPieces[0]);
+    console.log(this.myPieces[1]);
   }
 
 }
