@@ -1,42 +1,55 @@
 import * as math from "mathjs";
-// function a(param) {
-//     return (target) => {
-//         // do something with param
-//     }
-// }
+
 class Polysphere {
     character: string;
     colour: string;
     canFlip: boolean;
     shape: number[][];
-    // mainCoordinate: number[];
-    // otherCoordinates: number[][];
 
     constructor(character, colour, canFlip, shape) {
         this.character = character;
         this.shape = shape;
         this.character = character;
         this.colour = colour;
-        this.canFlip = canFlip
+        this.canFlip = canFlip;
+    }
+    matrixValue(phase){
+        let theata = math.pi / phase;
+        let s = Math.sin(theata);
+        let c = Math.cos(theata);
+        return [s, c]
     }
 
     RotateX(this) {
         // maximum for 8 times
-        let theata = math.pi / 2;
-        let vectors = math.matrix(this.shape);
-        let A = math.transpose(vectors);
-        let sinTheata = Math.sin(theata);
-        let cosTheata = Math.cos(theata);
+        let A = math.transpose(math.matrix(this.shape));
+        let [cosTheata, sinTheata] = this.matrixValue(4)
         let rMatrix = [
             [1, 0, 0],
             [0, cosTheata, -sinTheata],
             [0, sinTheata, cosTheata]];
-        
-        // this.shape = 
-        return math.transpose(math.multiply(rMatrix, A))
+        this.shape = math.transpose(math.multiply(rMatrix, A))
     }
-    RotateY() {}
-    RotateZ() {}
+    RotateY(this) {
+        // maximum for 2 times
+        let A = math.transpose(math.matrix(this.shape));
+        let [cosTheata, sinTheata] = this.matrixValue(4)
+        let rMatrix = [
+            [cosTheata, 0, sinTheata],
+            [0, 1, 0],
+            [-sinTheata, 0, cosTheata]];
+        this.shape = math.transpose(math.multiply(rMatrix, A))
+    }
+    RotateZ(this) {
+        // maximum for 4 times
+        let A = math.transpose(math.matrix(this.shape));
+        let [cosTheata, sinTheata] = this.matrixValue(2)
+        let rMatrix = [
+            [cosTheata, -sinTheata, 0],
+            [sinTheata, cosTheata, 0],
+            [0, 0, 1]];
+        this.shape = math.transpose(math.multiply(rMatrix, A))
+    }
     rotateRight() {}
     rotateLeft() {}
     flipHorizontal() {}
@@ -57,8 +70,21 @@ function createPolySpherePieces() {
     // polyspheres.push(new Polysphere([1, 0, 0, 0, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], 'J', '#006400', true));
     // polyspheres.push(new Polysphere([1, 0, 2, 1], 'K', '#FF7F50', false));
     // polyspheres.push(new Polysphere([1, 1, 0, 0, 2, 1, 0, 0, 1], 'L', '#87CEEB', false));
-    polyspheres[0] = polyspheres[0].RotateX();
     return polyspheres;
 }
 
-export { createPolySpherePieces };
+function createPyramidCooridate(){
+    let prymid = []
+    let layer = 5
+    for(let i = layer; i > 0; i--){
+      let offsetTimes = layer - i 
+      for(let j = 0; j < i; j++){
+        for (let k = 0; k < i; k++){
+          prymid.push([k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(3)/2)]);
+        }
+      }
+    }
+    return prymid
+}
+
+export { createPolySpherePieces, createPyramidCooridate };

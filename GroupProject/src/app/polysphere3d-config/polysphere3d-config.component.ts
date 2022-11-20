@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { createPolySpherePieces } from '../util/polySpheres';
+import { createPolySpherePieces, createPyrmidCooridate } from '../util/polySpheres';
 
 @Component({
   selector: 'Polysphere3dConfig',
@@ -9,14 +9,17 @@ import { createPolySpherePieces } from '../util/polySpheres';
 export class Polysphere3dConfigComponent implements OnInit {
 
   myPieces;
+  prymid;
 
   constructor() { 
     this.myPieces = createPolySpherePieces();
+    this.prymid = createPyrmidCooridate();
   }
 
   ngOnInit(): void {
-    console.log(this.myPieces[0]);
-    console.log(this.myPieces[1]);
+    // console.log(this.myPieces[0]);
+    
+    console.log(this.prymid);
   }
 
 }
