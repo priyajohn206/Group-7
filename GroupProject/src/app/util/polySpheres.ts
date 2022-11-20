@@ -58,18 +58,18 @@ class Polysphere {
 
 function createPolySpherePieces() {
     let polyspheres = [];
-    polyspheres.push(new Polysphere('A', '#FF0000', false, [[1,2,0]]));
-    // polyspheres.push(new Polysphere([0, 0, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'B', '#FF1493', true));
-    // polyspheres.push(new Polysphere([0, 1, 0, 1, 2, 0, 0, 1, 1], 'C', '#FFC0CB', true));
-    // polyspheres.push(new Polysphere([0, 1, 0, 1, 2, 1, 0, 0, 0], 'D', '#4169E1', false));
-    // polyspheres.push(new Polysphere([0, 1, 0, 0, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], 'E', '#FFD700', true));
-    // polyspheres.push(new Polysphere([0, 1, 1, 1, 2, 1, 0, 0, 0], 'F', '#DA70D6', true));
-    // polyspheres.push(new Polysphere([0, 1, 1, 1, 2, 0, 0, 0, 0], 'G', '#9400D3', true));
-    // polyspheres.push(new Polysphere([2, 1, 0, 1, 0, 0, 1, 0, 0], 'H', '#32CD32', true));
-    // polyspheres.push(new Polysphere([1, 1, 2, 0, 0, 1, 0, 0, 1], 'I', '#FF8C00', false));
-    // polyspheres.push(new Polysphere([1, 0, 0, 0, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], 'J', '#006400', true));
-    // polyspheres.push(new Polysphere([1, 0, 2, 1], 'K', '#FF7F50', false));
-    // polyspheres.push(new Polysphere([1, 1, 0, 0, 2, 1, 0, 0, 1], 'L', '#87CEEB', false));
+    polyspheres.push(new Polysphere('A', '#FF0000', false, [[0,0,0], [1,0,0],[1,1,0],[1,2,0]]));
+    polyspheres.push(new Polysphere('B', '#FF1493', true, [[0,0,0],[0,1,0],[1,0,0],[1,1,0],[1,2,0]]));
+    polyspheres.push(new Polysphere('C', '#FFC0CB', true, [[0,0,0],[1,0,0],[1,1,0],[1,2,0],[1,3,0]]));
+    polyspheres.push(new Polysphere('D', '#4169E1', false, [[0,1,0],[1,0,0],[1,1,0],[1,2,0],[1,3,0]]));
+    polyspheres.push(new Polysphere('E', '#FFD700', true, [[0,0,0],[0,1,0],[1,1,0],[1,2,0], [1,3,0]]));
+    polyspheres.push(new Polysphere('F', '#DA70D6', true, [[0,0,0],[0,1,0],[1,0,0]]));
+    polyspheres.push(new Polysphere('G', '#9400D3', true, [[0,0,0], [1,0,0],[2,0,0],[2,1,0],[2,2,0]]));
+    polyspheres.push(new Polysphere('H', '#32CD32', true, [[0,0,0], [1,0,0],[1,1,0],[2,1,0],[2,2,0]]));
+    polyspheres.push(new Polysphere('I', '#FF8C00', false, [[0,0,0], [0,1,0],[1,0,0],[2,0,0],[2,1,0]]));
+    polyspheres.push(new Polysphere('J', '#006400', true, [[0,0,0],[0,1,0],[0,2,0],[0,3,0]]));
+    polyspheres.push(new Polysphere('K', '#FF7F50', false, [[0,0,0],[0,1,0],[1,0,0],[1,1,0]]));
+    polyspheres.push(new Polysphere('L', '#87CEEB', false, [[0,1,0],[1,0,0],[1,1,0],[1,2,0],[2,1,0]]));
     return polyspheres;
 }
 
