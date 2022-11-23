@@ -1,10 +1,12 @@
 import * as math from "mathjs";
+import { index } from "mathjs";
 
 class Polysphere {
     character: string;
     colour: string;
     canFlip: boolean;
-    shape: number[][];
+    shape: math.Matrix;
+    #initialShape: math.Matrix;
 
     constructor(character, colour, canFlip, shape) {
         this.character = character;
@@ -12,49 +14,87 @@ class Polysphere {
         this.character = character;
         this.colour = colour;
         this.canFlip = canFlip;
-    }
-    matrixValue(phase){
+        this.#initialShape = shape
+    };
+    #matrixValue(phase){
         let theata = math.pi / phase;
         let s = Math.sin(theata);
         let c = Math.cos(theata);
         return [s, c]
-    }
+    };
+    #normalization(){
+        // make a guarantee that puzzle will always locate at quardant I.
+        let xOffset = 0;
+        let yOffset = 0;
+        let zOffset = 0;
+        for(let i =0; i<math.size(this.shape)[0] ; i++){
+            if(this.shape[i][0]<xOffset){
+                xOffset=this.shape[i][0]
+            };
+            if(this.shape[i][1]<xOffset){
+                yOffset=this.shape[i][1]
+            };
+            if(this.shape[i][2]<xOffset){
+                zOffset=this.shape[i][2]
+            };
+        };
 
-    RotateX(this) {
-        // maximum for 8 times
+        if(xOffset<0){
+            for(let i =0; i<math.size(this.shape)[0] ; i++){
+                this.shape[i][0] -= xOffset;
+            };
+        };
+        if(yOffset<0){
+            for(let i =0; i<math.size(this.shape)[0] ; i++){
+                this.shape[i][1] -= yOffset;
+            };
+        }
+        if(zOffset<0){
+            for(let i =0; i<math.size(this.shape)[0] ; i++){
+                this.shape[i][2] -= zOffset;
+            };
+        };
+    };
+    RotateX() {
         let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.matrixValue(4)
+        let [cosTheata, sinTheata] = this.#matrixValue(4)
         let rMatrix = [
             [1, 0, 0],
             [0, cosTheata, -sinTheata],
             [0, sinTheata, cosTheata]];
-        this.shape = math.transpose(math.multiply(rMatrix, A))
-    }
-    RotateY(this) {
-        // maximum for 2 times
+        let newShape = math.transpose(math.multiply(rMatrix, A));
+        this.shape = math.round(newShape, 5);
+        this.#normalization();
+    };
+    RotateY() {
         let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.matrixValue(4)
+        let [cosTheata, sinTheata] = this.#matrixValue(4);
         let rMatrix = [
             [cosTheata, 0, sinTheata],
             [0, 1, 0],
             [-sinTheata, 0, cosTheata]];
-        this.shape = math.transpose(math.multiply(rMatrix, A))
-    }
-    RotateZ(this) {
-        // maximum for 4 times
+        let newShape = math.transpose(math.multiply(rMatrix, A));
+        this.shape = math.round(newShape, 5);
+        this.#normalization();
+    };
+    RotateZ() {
         let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.matrixValue(2)
+        let [cosTheata, sinTheata] = this.#matrixValue(4);
         let rMatrix = [
             [cosTheata, -sinTheata, 0],
             [sinTheata, cosTheata, 0],
             [0, 0, 1]];
-        this.shape = math.transpose(math.multiply(rMatrix, A))
-    }
-    rotateRight() {}
-    rotateLeft() {}
-    flipHorizontal() {}
-    flipVertical() {}
-}
+        let newShape = math.transpose(math.multiply(rMatrix, A));
+        this.shape = math.round(newShape, 5);
+        this.#normalization();
+    };
+    getInitialShape(){
+        return this.#initialShape
+    };
+    resetShape(){
+        this.shape = this.#initialShape
+    };
+};
 
 function createPolySpherePieces() {
     let polyspheres = [];
@@ -71,20 +111,61 @@ function createPolySpherePieces() {
     polyspheres.push(new Polysphere('K', '#FF7F50', false, [[0,0,0],[0,1,0],[1,0,0],[1,1,0]]));
     polyspheres.push(new Polysphere('L', '#87CEEB', false, [[0,1,0],[1,0,0],[1,1,0],[1,2,0],[2,1,0]]));
     return polyspheres;
-}
+};
 
 function createPyramidCooridate(){
-    let prymid = []
-    let layer = 5
+    let pyramidDict = {};
+    let count = 0;
+    let layer = 5;
     for(let i = layer; i > 0; i--){
-      let offsetTimes = layer - i 
+      let offsetTimes = layer - i;
       for(let j = 0; j < i; j++){
         for (let k = 0; k < i; k++){
-          prymid.push([k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(3)/2)]);
-        }
-      }
-    }
-    return prymid
-}
+            let coordinate = [k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(2)/2)];
+            pyramidDict[math.round(coordinate, 5).toString()] = count;
+            count += 1;
+        };
+      };
+    };
+    return pyramidDict
+};
+
+class Pyramid{
+    #layer: number;
+    coordinate;
+    indexArray;
+    constructor(){
+        this.#layer = 5;
+        this.coordinate = createPyramidCooridate();
+        this.indexArray = math.zeros(12, this.coordinate.length)
+    };
+    createPyramidCooridate(){
+        let pyramidDict = {};
+        let count = 0;
+        for(let i = this.#layer; i > 0; i--){
+          let offsetTimes = this.#layer - i;
+          for(let j = 0; j < i; j++){
+            for (let k = 0; k < i; k++){
+                let coordinate = [k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(2)/2)];
+                pyramidDict[math.round(coordinate, 5).toString()] = count;
+                count += 1;
+            };
+          };
+        };
+        return pyramidDict
+    };
+    isCrash(){};
+    place(puzzle){
+        try{
+            let placeList = []
+            for(let i=0;i<puzzle.length;i++){
+                placeList.push(this.coordinate[puzzle[i].toString()])
+            };
+            return this.isCrash();
+        }catch{
+            return false;
+        };
+    };
+};
 
 export { createPolySpherePieces, createPyramidCooridate };

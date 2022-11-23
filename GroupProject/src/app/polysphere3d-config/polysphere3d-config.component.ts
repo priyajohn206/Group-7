@@ -9,17 +9,21 @@ import { createPolySpherePieces, createPyramidCooridate } from '../util/polySphe
 export class Polysphere3dConfigComponent implements OnInit {
 
   myPieces;
-  praymid;
+  pyramid;
 
   constructor() { 
     this.myPieces = createPolySpherePieces();
-    this.praymid = createPyramidCooridate();
+    this.pyramid = createPyramidCooridate();
   }
 
   ngOnInit(): void {
-    // console.log(this.myPieces[0]);
-    
-    console.log(this.praymid);
+    // console.log(this.myPieces[1]);
+    console.log(this.pyramid)
+    this.myPieces[5].RotateX()
+    let a = this.myPieces[5].shape._data
+    for(let i=0; i<a.length; i++){
+      console.log(a[i]);
+    }
   }
 
 }
