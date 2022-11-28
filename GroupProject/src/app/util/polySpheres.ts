@@ -1,99 +1,31 @@
 import * as math from "mathjs";
-import { index } from "mathjs";
+import {rotation} from './rotation';
 
-class Polysphere {
+class Polysphere extends rotation{
     character: string;
     colour: string;
     canFlip: boolean;
-    shape: math.Matrix;
-    #initialShape: math.Matrix;
+    isFlip: boolean
 
     constructor(character, colour, canFlip, shape) {
+        super(shape)
         this.character = character;
-        this.shape = shape;
         this.character = character;
         this.colour = colour;
         this.canFlip = canFlip;
-        this.#initialShape = shape
+        this.isFlip = false
     };
-    #matrixValue(phase){
-        let theata = math.pi / phase;
-        let s = Math.sin(theata);
-        let c = Math.cos(theata);
-        return [s, c]
+    
+    flipHorizontal(){
+        super.rotateY(math.pi)
+        super.normalization
     };
-    #normalization(){
-        // make a guarantee that puzzle will always locate at quardant I.
-        let xOffset = 0;
-        let yOffset = 0;
-        let zOffset = 0;
-        for(let i =0; i<math.size(this.shape)[0] ; i++){
-            if(this.shape[i][0]<xOffset){
-                xOffset=this.shape[i][0]
-            };
-            if(this.shape[i][1]<xOffset){
-                yOffset=this.shape[i][1]
-            };
-            if(this.shape[i][2]<xOffset){
-                zOffset=this.shape[i][2]
-            };
-        };
+    eularSetting(x,y,z){
+        super.rotateX(x);
+        super.rotateY(y);
+        super.rotateZ(z);
+    };
 
-        if(xOffset<0){
-            for(let i =0; i<math.size(this.shape)[0] ; i++){
-                this.shape[i][0] -= xOffset;
-            };
-        };
-        if(yOffset<0){
-            for(let i =0; i<math.size(this.shape)[0] ; i++){
-                this.shape[i][1] -= yOffset;
-            };
-        }
-        if(zOffset<0){
-            for(let i =0; i<math.size(this.shape)[0] ; i++){
-                this.shape[i][2] -= zOffset;
-            };
-        };
-    };
-    RotateX() {
-        let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.#matrixValue(4)
-        let rMatrix = [
-            [1, 0, 0],
-            [0, cosTheata, -sinTheata],
-            [0, sinTheata, cosTheata]];
-        let newShape = math.transpose(math.multiply(rMatrix, A));
-        this.shape = math.round(newShape, 5);
-        this.#normalization();
-    };
-    RotateY() {
-        let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.#matrixValue(4);
-        let rMatrix = [
-            [cosTheata, 0, sinTheata],
-            [0, 1, 0],
-            [-sinTheata, 0, cosTheata]];
-        let newShape = math.transpose(math.multiply(rMatrix, A));
-        this.shape = math.round(newShape, 5);
-        this.#normalization();
-    };
-    RotateZ() {
-        let A = math.transpose(math.matrix(this.shape));
-        let [cosTheata, sinTheata] = this.#matrixValue(4);
-        let rMatrix = [
-            [cosTheata, -sinTheata, 0],
-            [sinTheata, cosTheata, 0],
-            [0, 0, 1]];
-        let newShape = math.transpose(math.multiply(rMatrix, A));
-        this.shape = math.round(newShape, 5);
-        this.#normalization();
-    };
-    getInitialShape(){
-        return this.#initialShape
-    };
-    resetShape(){
-        this.shape = this.#initialShape
-    };
 };
 
 function createPolySpherePieces() {
@@ -136,7 +68,7 @@ class Pyramid{
     indexArray;
     constructor(){
         this.#layer = 5;
-        this.coordinate = createPyramidCooridate();
+        this.coordinate = this.createPyramidCooridate();
         this.indexArray = math.zeros(12, this.coordinate.length)
     };
     createPyramidCooridate(){
@@ -154,18 +86,17 @@ class Pyramid{
         };
         return pyramidDict
     };
-    isCrash(){};
-    place(puzzle){
+    legalPlace(puzzle){
         try{
             let placeList = []
             for(let i=0;i<puzzle.length;i++){
                 placeList.push(this.coordinate[puzzle[i].toString()])
             };
-            return this.isCrash();
+            return true;
         }catch{
             return false;
         };
     };
 };
 
-export { createPolySpherePieces, createPyramidCooridate };
+export { createPolySpherePieces, Pyramid };
