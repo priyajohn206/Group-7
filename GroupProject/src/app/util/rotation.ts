@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 
-export class rotation{
+export class Rotation{
     shape: math.Matrix;
     #initialShape: math.Matrix;
     

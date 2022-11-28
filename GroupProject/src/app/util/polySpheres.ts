@@ -1,7 +1,7 @@
 import * as math from "mathjs";
-import {rotation} from './rotation';
+import {Rotation} from './rotation';
 
-class Polysphere extends rotation{
+class Polysphere extends Rotation{
     character: string;
     colour: string;
     canFlip: boolean;
@@ -20,7 +20,7 @@ class Polysphere extends rotation{
         super.rotateY(math.pi)
         super.normalization
     };
-    eularSetting(x,y,z){
+    eularSetting(x, y, z){
         super.rotateX(x);
         super.rotateY(y);
         super.rotateZ(z);
@@ -45,23 +45,6 @@ function createPolySpherePieces() {
     return polyspheres;
 };
 
-function createPyramidCooridate(){
-    let pyramidDict = {};
-    let count = 0;
-    let layer = 5;
-    for(let i = layer; i > 0; i--){
-      let offsetTimes = layer - i;
-      for(let j = 0; j < i; j++){
-        for (let k = 0; k < i; k++){
-            let coordinate = [k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(2)/2)];
-            pyramidDict[math.round(coordinate, 5).toString()] = count;
-            count += 1;
-        };
-      };
-    };
-    return pyramidDict
-};
-
 class Pyramid{
     #layer: number;
     coordinate;
@@ -69,7 +52,7 @@ class Pyramid{
     constructor(){
         this.#layer = 5;
         this.coordinate = this.createPyramidCooridate();
-        this.indexArray = math.zeros(12, this.coordinate.length)
+        // this.indexArray = math.zeros(12, Object.keys(this.coordinate).length)
     };
     createPyramidCooridate(){
         let pyramidDict = {};
@@ -92,6 +75,7 @@ class Pyramid{
             for(let i=0;i<puzzle.length;i++){
                 placeList.push(this.coordinate[puzzle[i].toString()])
             };
+            // index retuning problem.
             return true;
         }catch{
             return false;

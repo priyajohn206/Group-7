@@ -9,17 +9,18 @@ import { createPolySpherePieces, Pyramid } from '../util/polySpheres';
 export class Polysphere3dConfigComponent implements OnInit {
 
   myPieces;
-  // pyramid;
+  pyramid;
 
   constructor() { 
     this.myPieces = createPolySpherePieces();
-    // this.pyramid = new Pyramid();
+    this.pyramid = new Pyramid();
   }
 
   ngOnInit(): void {
-    let pyramid = new Pyramid()
-    console.log(pyramid.coordinate)
-    // console.log(pyramid.legalPlace(this.myPieces[2]))
+    // let pyramid = new Pyramid()
+    // console.log(this.pyramid.coordinate)
+    console.log(this.pyramid.legalPlace(this.myPieces[2].rotateX(2)))
+    // console.log("123")
   }
 
 }
