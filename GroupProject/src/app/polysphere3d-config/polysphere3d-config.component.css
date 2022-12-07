@@ -1,0 +1,57 @@
+#container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#babylonCanvas {
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin-top: 10px;
+}
+
+#controlPanel {
+    border: 3px solid black;
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+    padding: 20px 40px;
+}
+
+#controlPanel > div {
+    padding: 20px;
+    text-align: center;
+}
+
+.buttonHolder {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.span2 {
+    grid-column: span 2;
+    margin: 0 auto;
+}
+
+.buttonHolder > button {
+    width: 160px;
+}
+
+.blackBorder {
+    border: 3px solid black;
+}
+
+#solve {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#backButton {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}

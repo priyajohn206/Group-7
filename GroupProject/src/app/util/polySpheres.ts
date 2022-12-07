@@ -1,6 +1,7 @@
 class Polysphere {
 
     shape: number[];
+    currentTilt: string;
     size: number;
     character: string;
     colour: string;
@@ -10,6 +11,7 @@ class Polysphere {
 
     constructor(shape, character, colour, canFlip) {
         this.shape = shape;
+        this.currentTilt = "";
         this.size = Math.sqrt(shape.length);
         this.locatePoints();
         this.character = character;
@@ -83,6 +85,41 @@ class Polysphere {
         }
         this.shape = newShape;
         this.locatePoints();
+    }
+
+    tilt(direction) {
+        this.currentTilt = direction;
+    }
+
+    translate3D(coords2d) {
+
+        let result;
+
+        switch(this.currentTilt) {
+            case "NW":
+                result = [-coords2d[0], -coords2d[0], coords2d[0] + coords2d[1]]
+                break;
+
+            case "NE":
+                result = [-coords2d[1], -coords2d[0], coords2d[0] + coords2d[1]]
+                break;
+
+            case "SW":
+                result = [-coords2d[0], -coords2d[1], coords2d[0] + coords2d[1]]
+                break;
+
+            case "SE":
+                result = [-coords2d[1], -coords2d[1], coords2d[0] + coords2d[1]]
+                break;
+
+            default:
+                result = coords2d;
+                break;
+                
+        }
+
+        return result;
+
     }
 
     print() {

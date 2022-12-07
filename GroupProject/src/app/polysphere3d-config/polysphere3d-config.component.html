@@ -1,1 +1,45 @@
-<p>polysphere3d-config works!</p>
+<button routerLink="/" type="button" id="backButton" class="btn btn-secondary">Back</button>
+
+<div id="header">
+    <h1>Polysphere 3D Puzzle</h1>
+</div>
+
+<div id="container">
+    <canvas id="babylonCanvas" height="450" width="800"></canvas> <!-- 1200x675 -->
+    <div id="controlPanel">
+        <div id="generalControl">
+            <h3>General Controls</h3>
+            <div class="buttonHolder">
+                <button class="btn btn-primary blackBorder" (click)="resetCamera()">Reset Camera</button>
+                <button class="btn btn-primary blackBorder" (click)="resetPieces()">Reset Pieces</button>
+            </div>
+        </div>
+        <div id="2dControl">
+            <h3>2D Controls</h3>
+            <div class="buttonHolder" [ngClass]="{hidden: selectedPieceIndex == undefined || selectedPieceIndex == null}">
+                <button class="btn btn-primary blackBorder" (click)="rotateLeft()">Rotate Left</button>
+                <button class="btn btn-primary blackBorder" (click)="rotateRight()">Rotate Right</button>
+                <button class="btn btn-primary blackBorder" (click)="flipHorizontal()">Flip Horizontal</button>
+                <button class="btn btn-primary blackBorder" (click)="flipVertical()">Flip Vertical</button>
+            </div>
+        </div>
+        <div id="3dControl">
+            <h3>3D Controls</h3>
+            <div class="buttonHolder" [ngClass]="{hidden: selectedPieceIndex == undefined || selectedPieceIndex == null}">
+                <button class="btn btn-primary blackBorder" (click)="tiltNW()">Tilt NorthWest</button>
+                <button class="btn btn-primary blackBorder" (click)="tiltNE()">Tilt NorthEast</button>
+                <button class="btn btn-primary blackBorder span2" (click)="resetTilt()">Reset Tilt</button>
+                <button class="btn btn-primary blackBorder" (click)="tiltSW()">Tilt SouthWest</button>
+                <button class="btn btn-primary blackBorder" (click)="tiltSE()">Tilt SouthEast</button>
+            </div>
+        </div>
+        <div id="distanceControl">
+            <h3>Distance Controls</h3>
+            <div class="buttonHolder">
+                <button class="btn btn-primary blackBorder" (click)="decreaseDistance()">Decrease Distance</button>
+                <button class="btn btn-primary blackBorder" (click)="increaseDistance()">Increase Distance</button>
+            </div>
+        </div>
+    </div>
+    <button id="solve" type="button" class="btn btn-success">Solve</button>
+</div>

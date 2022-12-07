@@ -16,6 +16,7 @@ export class PolysphereConfigComponent implements OnInit {
   myBoardEls;
   myControlPanel;
   myBoardArray = [];
+  placedPieces = [];
 
   activePiece;
   activePieceIndex;
@@ -35,7 +36,8 @@ export class PolysphereConfigComponent implements OnInit {
   }
 
   getPieceStyle(pieceNum) {
-    return {
+
+    let style = {
       'align-content': 'center',
       'display': 'grid',
       'grid-template-columns': 'repeat(' + this.myPieces[pieceNum].size + ', 1fr)',
@@ -43,6 +45,13 @@ export class PolysphereConfigComponent implements OnInit {
       'top': '0px',
       'left': '0px',
     }
+
+    if (this.placedPieces.indexOf(this.myPieces[pieceNum].character) != -1) {
+      style['filter'] = 'grayscale(50%)';
+    }
+
+    return style;
+
   }
 
   getPieceColour(pieceNum, pieceCoord) {
@@ -88,6 +97,10 @@ export class PolysphereConfigComponent implements OnInit {
         y -= 1;
       }
       this.removeFromBoard(this.myPieces[i].character);
+      if (this.placedPieces.indexOf(this.myPieces[i].character) != -1) {
+        this.placedPieces.splice(this.placedPieces.indexOf(this.myPieces[i].character), 1);
+      }
+      
       this.positionControlPanel();
     }
 
@@ -106,6 +119,8 @@ export class PolysphereConfigComponent implements OnInit {
       this.currentlyHoveredCoordinates.forEach((coord) => {
         this.myBoardArray[coord[1]][coord[0]] = this.myPieces[this.activePieceIndex].character;
       });
+
+      this.placedPieces.push(this.myPieces[this.activePieceIndex].character);
 
       let me = this.activePiece.getBoundingClientRect();
       let target = document.querySelectorAll('#boardGrid > .cell')[this.currentlyHoveredCell - (this.currentCellOffset[1] * this.boardSizeX) - this.currentCellOffset[0]].getBoundingClientRect();
@@ -237,6 +252,7 @@ export class PolysphereConfigComponent implements OnInit {
     this.dragPosition = {x: this.dragPosition.x, y: this.dragPosition.y};
 
     this.removeFromBoard(-1);
+    this.placedPieces = [];
 
   }
 

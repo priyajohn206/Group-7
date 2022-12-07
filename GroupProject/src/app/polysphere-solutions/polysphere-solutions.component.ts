@@ -160,7 +160,7 @@ export class PolysphereSolutionsComponent implements OnInit {
       this.usingGenerator = true;
       result = solvePolyspheres(characters, coordinates, true);
       this.solutionGenerator = result[0];
-      this.solutions.push(this.solutionGenerator.next().value);
+      this.generateNewSolution();
     }
     else {
       result = solvePolyspheres(characters, coordinates, false);
