@@ -1,19 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { createPolySpherePieces, Pyramid } from '../util/polySpheres';
+import { Polysphere } from '../util/polySpheres';
+import {Pyramid} from '../util/Pyramid';
 
 @Component({
   selector: 'Polysphere3dConfig',
   templateUrl: './polysphere3d-config.component.html',
   styleUrls: ['./polysphere3d-config.component.css']
 })
-export class Polysphere3dConfigComponent implements OnInit {
 
+export class Polysphere3dConfigComponent implements OnInit {
+  
   myPieces;
   pyramid;
 
   constructor() { 
-    this.myPieces = createPolySpherePieces();
-    this.pyramid = new Pyramid();
+    this.myPieces = this.createPolySpherePieces();
+    this.pyramid = new Pyramid(5, 5, 5);
+  }
+
+  createPolySpherePieces() {
+    let polyspheres = [];
+    polyspheres.push(new Polysphere('A', '#FF0000', false, [[0,0,0], [1,0,0],[1,1,0],[2,0,0]]));
+    polyspheres.push(new Polysphere('B', '#FF1493', true, [[0,0,0],[1,1,0],[1,0,0],[2,1,0]]));
+    polyspheres.push(new Polysphere('C', '#FFC0CB', true, [[0,0,0],[1,0,0],[1,1,0],[1,2,0],[1,3,0]]));
+    polyspheres.push(new Polysphere('D', '#4169E1', false, [[0,1,0],[1,0,0],[1,1,0],[1,2,0],[1,3,0]]));
+    polyspheres.push(new Polysphere('E', '#FFD700', true, [[0,0,0],[0,1,0],[1,1,0],[1,2,0], [1,3,0]]));
+    polyspheres.push(new Polysphere('F', '#DA70D6', true, [[0,0,0],[0,1,0],[1,0,0]]));
+    polyspheres.push(new Polysphere('G', '#9400D3', true, [[0,0,0], [1,0,0],[2,0,0],[2,1,0],[2,2,0]]));
+    polyspheres.push(new Polysphere('H', '#32CD32', true, [[0,0,0], [1,0,0],[1,1,0],[2,1,0],[2,2,0]]));
+    polyspheres.push(new Polysphere('I', '#FF8C00', false, [[0,0,0], [0,1,0],[1,0,0],[2,0,0],[2,1,0]]));
+    polyspheres.push(new Polysphere('J', '#006400', true, [[0,0,0],[0,1,0],[0,2,0],[0,3,0]]));
+    polyspheres.push(new Polysphere('K', '#FF7F50', false, [[0,0,0],[0,1,0],[1,0,0],[1,1,0]]));
+    polyspheres.push(new Polysphere('L', '#87CEEB', false, [[0,1,0],[1,0,0],[1,1,0],[1,2,0],[2,1,0]]));
+    return polyspheres;
   }
 
   ngOnInit(): void {
