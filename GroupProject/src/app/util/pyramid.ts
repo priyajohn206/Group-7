@@ -18,9 +18,11 @@ export class Pyramid{
         let count = 0;
         for(let i = this.#pyramidLayer; i > 0; i--){
           let offsetTimes = this.#pyramidLayer - i;
-          for(let j = 0; j < this.#pyramidwidth; j++){
-            for (let k = 0; k < this.#pyramidLength; k++){
-                let coordinate = [k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes+offsetTimes*(Math.sqrt(2)/2)];
+          let w = this.#pyramidwidth - offsetTimes
+          let l = this.#pyramidLength - offsetTimes
+          for(let j = 0; j < w; j++){
+            for (let k = 0; k < l; k++){
+                let coordinate = [k+offsetTimes*0.5, j+offsetTimes*0.5, offsetTimes*(Math.sqrt(2)/2)];
                 pyramidDict[math.round(coordinate, 5).toString()] = count;
                 count += 1;
             };
