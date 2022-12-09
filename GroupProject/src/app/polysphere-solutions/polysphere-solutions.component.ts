@@ -110,7 +110,7 @@ export class PolysphereSolutionsComponent implements OnInit {
   generateNewSolution() {
     let iteratorResult = this.solutionGenerator.next();
     if (!iteratorResult.done) {
-      this.solutions.push(this.solutionGenerator.next().value);
+      this.solutions.push(iteratorResult.value);
       this.jump(this.solutions.length - 1);
     }
   }

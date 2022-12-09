@@ -1,0 +1,30 @@
+<button (click)="goBack()" type="button" id="backButton" class="btn btn-secondary">Back</button>
+
+<div id="header">
+    <h1>Polysphere 3D Solutions</h1>
+</div>
+
+<div id="container">
+    <h2>Showing solution {{ currentSolutionIndex + 1 }} of {{ solutions.length }}</h2>
+    <div *ngIf="usingGenerator" id="newSolutionButton">
+        <button type="button" (click)="generateNewSolution(true)" class="btn btn-secondary">Generate Next Solution</button>
+    </div>
+    <div id="indexControlDiv">
+        <button type="button" (click)="decrement()" class="btn btn-secondary indexControl">Previous</button>
+        <button type="button" (click)="increment()" class="btn btn-secondary indexControl">Next</button>
+        <button type="button" (click)="random()" class="btn btn-secondary indexControl">Random</button>
+    </div>
+    <div id="inputBox" class="input-group mb-3 n-inner-box">
+        <input type="number" class="form-control n-input-box" placeholder="1" max="{{ solutions.length }}" min="1" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="inputSolutionIndex">
+        <button class="btn btn-secondary input-btn" type="button" id="button-addon2" (click)="jumpTo()">Go To</button>
+    </div>
+    <canvas id="babylonCanvas2" width="800" height="450"></canvas>
+    <div id="canvasControls">
+        <button type="button" (click)="decreaseDistance()" class="btn btn-primary blackBorder">Decrease Distance</button>
+        <button type="button" (click)="increaseDistance()" class="btn btn-primary blackBorder">Increase Distance</button>
+    </div>
+</div>
+
+<div *ngIf="solutions.length == 0">
+    <p>No solutions found</p>
+</div>

@@ -1,4 +1,4 @@
-<button routerLink="/" type="button" id="backButton" class="btn btn-secondary">Back</button>
+<button (click)="goBack()" type="button" id="backButton" class="btn btn-secondary">Back</button>
 
 <div id="header">
     <h1>Polysphere 3D Puzzle</h1>
@@ -41,5 +41,5 @@
             </div>
         </div>
     </div>
-    <button id="solve" type="button" class="btn btn-success">Solve</button>
+    <button (click)="solve()" id="solve" type="button" class="btn btn-success">Solve</button>
 </div>

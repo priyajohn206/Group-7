@@ -123,10 +123,10 @@ export class PolysphereConfigComponent implements OnInit {
       this.placedPieces.push(this.myPieces[this.activePieceIndex].character);
 
       let me = this.activePiece.getBoundingClientRect();
-      let target = document.querySelectorAll('#boardGrid > .cell')[this.currentlyHoveredCell - (this.currentCellOffset[1] * this.boardSizeX) - this.currentCellOffset[0]].getBoundingClientRect();
+      let target = document.querySelectorAll('#boardGrid > .cell')[this.currentlyHoveredCell].getBoundingClientRect();
       let currentOffset = [Number(this.activePiece.style.top.split('px')[0]), Number(this.activePiece.style.left.split('px')[0])];
-      this.activePiece.style.top = (target.y - (me.y - currentOffset[0]) + 5) + 'px';
-      this.activePiece.style.left = (target.x - (me.x - currentOffset[1]) + 5) + 'px';
+      this.activePiece.style.top = (target.y - (this.currentCellOffset[1] * 45) - (me.y - currentOffset[0]) + 5) + 'px';
+      this.activePiece.style.left = (target.x - (this.currentCellOffset[0] * 45) - (me.x - currentOffset[1]) + 5) + 'px';
 
       this.activePiece.style.zIndex = 9;
       this.activePiece = undefined;

@@ -7,6 +7,7 @@ import { NQueensSolutionsComponent } from './nqueens-solutions/nqueens-solutions
 import { PolysphereConfigComponent } from './polysphere-config/polysphere-config.component';
 import { PolysphereSolutionsComponent } from './polysphere-solutions/polysphere-solutions.component';
 import { Polysphere3dConfigComponent } from './polysphere3d-config/polysphere3d-config.component';
+import { Polysphere3dSolutionsComponent } from './polysphere3d-solutions/polysphere3d-solutions.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'nqueens/solutions/:n/:queens', component: NQueensSolutionsComponent },
   { path: 'polysphere', component: PolysphereConfigComponent },
   { path: 'polysphere/solutions/:board', component: PolysphereSolutionsComponent},
-  { path: 'polysphere3d', component: Polysphere3dConfigComponent}
+  { path: 'polysphere3d', component: Polysphere3dConfigComponent},
+  { path: 'polysphere3d/solutions/:board', component: Polysphere3dSolutionsComponent},
 ];
 
 @NgModule({

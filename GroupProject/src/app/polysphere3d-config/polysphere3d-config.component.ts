@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { createPolySpherePieces } from '../util/polySpheres';
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
@@ -53,7 +54,7 @@ export class Polysphere3dConfigComponent implements OnInit {
   sceneSetup() {
 
     this.canvas = document.getElementById("babylonCanvas");
-    this.engine = new Engine(this.canvas, true, { preserveDrawingBuffer: true, stencil: true });
+    this.engine = new Engine(this.canvas, true);
     this.scene = new Scene(this.engine);
     this.calculateCameraInitAngle();
     this.camera = new UniversalCamera("camera1", new Vector3(this.initCameraPos.x, this.initCameraPos.y, this.initCameraPos.z), this.scene);
@@ -491,7 +492,49 @@ export class Polysphere3dConfigComponent implements OnInit {
     this.calculateCameraInitAngle();
   }
 
-  constructor() { }
+  goBack() {
+    this.engine.dispose();
+
+    let myRoute = "/";
+    this.router.navigate([myRoute]);
+  }
+
+  solve() {
+
+    let a = new Array(55); for (let i = 0; i < a.length; i++) { a[i] = 0; }
+
+    for (let i = 0; i < this.pyramidState.length; i++) {
+      for (let j = 0; j < this.pyramidState[i].length; j++) {
+        for (let k = 0; k < this.pyramidState[i].length; k++) {
+          if (this.pyramidState[i][j][k] !== 0) {
+            a[this.coordsToIndex([k, j, i])] = this.pyramidState[i][j][k]
+          }
+        }
+      }
+    }
+
+    this.engine.dispose();
+
+    let route = "/polysphere3d/solutions/" + a.toString();
+    this.router.navigate([route]);
+
+  }
+
+  coordsToIndex(coords) {
+
+    let index = 0;
+    let breaks = [0, 25, 41, 50, 54];
+
+    index += breaks[coords[2]];
+
+    index += coords[1] * (5 - coords[2]);
+    index += coords[0];
+
+    return index;
+
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 
@@ -499,6 +542,9 @@ export class Polysphere3dConfigComponent implements OnInit {
     this.calculateDistanceBetweenPointsVector();
     this.pyramidSetup();
     this.pieceSetup();
+
+    console.log(this.engine)
+    console.log(this.scene);
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
